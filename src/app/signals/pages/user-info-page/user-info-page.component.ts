@@ -10,6 +10,7 @@ export class UserInfoPageComponent implements OnInit {
   private userService = inject(UsersServiceService);
   public userId = signal<number>(1);
   public user = signal<User | undefined>(undefined);
+  public userWasFound = signal<boolean>(false);
   ngOnInit(): void {
     this.loadUser(this.userId());
   }
@@ -18,8 +19,15 @@ export class UserInfoPageComponent implements OnInit {
     if (id <= 0) return;
     this.userId.set(id);
     this.user.set(undefined);
-    this.userService.getUserById(this.userId()).subscribe((user) => {
-      this.user.set(user);
+    this.userService.getUserById(this.userId()).subscribe({
+      next: (user) => {
+        this.user.set(user);
+        this.userWasFound.set(true);
+      },
+      error: () => {
+        this.user.set(undefined);
+        this.userWasFound.set(false);
+      },
     });
   }
 }
