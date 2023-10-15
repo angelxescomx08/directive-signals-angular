@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { User } from '../../interfaces/user-request.interface';
 
 @Component({
@@ -17,6 +17,12 @@ export class PropertiesPageComponent {
   public fullName = computed(
     () => `${this.user().first_name} ${this.user().last_name}`
   );
+
+  //el effect es similar al hook de react, se ejecuta siempre la primera vez y después siempre
+  //que alguna señal cambie, adicionalmente se limpia solo
+  public userChangedEffect = effect(() => {
+    console.log(this.user());
+  });
 
   onFieldUpdated(field: keyof User, value: string) {
     this.user.mutate((current) => {
