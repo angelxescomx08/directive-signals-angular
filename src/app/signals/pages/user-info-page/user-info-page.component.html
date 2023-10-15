@@ -1,1 +1,26 @@
-<p>user-info-page works!</p>
+<h1>Información del usuario</h1>
+<hr />
+
+<div class="row">
+  <div class="col-4">
+    <h3>Usuario actual: {{ userId() }}</h3>
+    <button (click)="loadUser(userId() - 1)" class="btn btn-primary">
+      Anterior
+    </button>
+    &nbsp;
+    <button (click)="loadUser(userId() + 1)" class="btn btn-primary">
+      Siguiente
+    </button>
+  </div>
+
+  <div class="col-8" *ngIf="user()">
+    <h3>Usuario</h3>
+    <p>Email: {{ user()?.email }}</p>
+    <p>Nombre: {{ user()?.first_name }}</p>
+    <img [src]="user()?.avatar" alt="avatar" class="rounded" />
+  </div>
+
+  <div class="col-8 text-danger" *ngIf="!user()">
+    <h3>Usuario no encontrado</h3>
+  </div>
+</div>
