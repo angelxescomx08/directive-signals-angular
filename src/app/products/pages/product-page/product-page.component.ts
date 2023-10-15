@@ -15,7 +15,7 @@ export class ProductPageComponent {
       [Validators.required, Validators.minLength(6), Validators.email],
     ],
   });
-  public color: string = '';
+  public color: string = 'green';
 
   changeColor() {
     const color = '#xxxxxx'.replace(/x/g, (y) =>
