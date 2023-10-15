@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignalsLayoutComponent } from './layout/signals-layout/signals-layout.component';
 import { CounterPageComponent } from './pages/counter-page/counter-page.component';
 import { UserInfoPageComponent } from './pages/user-info-page/user-info-page.component';
-import { ProductPageComponent } from '../products/pages/product-page/product-page.component';
+import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'properties',
-        component: ProductPageComponent,
+        component: PropertiesPageComponent,
       },
       {
         path: '**',
